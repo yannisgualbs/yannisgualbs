@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Yannis Movie System</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/yannis.png') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,9 +14,9 @@
         }
 
         body {
-            font-family: "DM Sans", sans-serif;
-            background: #2a2e27;
-            color: #d4d8cc;
+            font-family: "Inter", sans-serif;
+            background: #f5f6f8;
+            color: #1f2937;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -25,35 +26,31 @@
 
         .card {
             width: 100%;
-            max-width: 900px;
-            background: #323630;
-            border-radius: 28px;
-            padding: 60px 50px;
-            text-align: center;
-            position: relative;
+            max-width: 950px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 45px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
 
-        /* CHANGED: logo + auth buttons now share one top row */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 20px;
-            margin-bottom: 60px;
+            margin-bottom: 45px;
             flex-wrap: wrap;
         }
 
-        /* CHANGED: logo moved to top-left */
         .logo img {
             width: 64px;
-            height: auto;
-            display: block;
+            height: 64px;
+            object-fit: contain;
         }
 
         .top-nav {
             display: flex;
-            justify-content: flex-end;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
@@ -61,111 +58,87 @@
         .logout-btn {
             text-decoration: none;
             padding: 10px 18px;
-            border-radius: 999px;
+            border-radius: 10px;
             font-size: 14px;
-            font-weight: 400;
-            transition: 0.2s ease;
             border: none;
             cursor: pointer;
-            font-family: "DM Sans", sans-serif;
+            font-family: "Inter", sans-serif;
         }
 
         .top-nav a {
-            color: #9eaa96;
-            background: rgba(255, 255, 255, 0.05);
+            background: #eef2f7;
+            color: #1f2937;
         }
 
         .top-nav a:hover {
-            background: rgba(255, 255, 255, 0.09);
-            color: #c8d4c0;
+            background: #e2e8f0;
         }
 
         .logout-btn {
-            background: #6a4b4b;
-            color: #f0d8d8;
+            background: #dc2626;
+            color: white;
         }
 
         .logout-btn:hover {
-            background: #7a5858;
-            color: #fff0f0;
+            background: #b91c1c;
         }
 
         h1 {
-            font-family: "Lora", serif;
-            font-size: 48px;
-            font-weight: 400;
-            margin-bottom: 18px;
-            color: #dce4d4;
-            line-height: 1.25;
-            letter-spacing: -0.01em;
-        }
-
-        h1 em {
-            font-style: italic;
-            color: #8faa88;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+            color: #111827;
         }
 
         p {
             font-size: 16px;
-            color: #7d8878;
-            max-width: 460px;
-            margin: 0 auto 38px;
-            line-height: 1.75;
-            font-weight: 300;
+            line-height: 1.7;
+            color: #4b5563;
+            max-width: 620px;
+            margin: 0 auto 30px;
+            text-align: center;
         }
 
         .hero-image {
-            width: 100%;
-            max-width: 380px;
-            margin: 0 auto 38px;
-            border-radius: 18px;
+            max-width: 430px;
+            margin: 0 auto;
+            border-radius: 16px;
             overflow: hidden;
-            background: #2a2e27;
         }
 
         .hero-image img {
             width: 100%;
             display: block;
-            opacity: 0.88;
+            object-fit: cover;
         }
 
         @media (max-width: 768px) {
             .card {
-                padding: 35px 25px;
-            }
-
-            h1 {
-                font-size: 34px;
-            }
-
-            p {
-                font-size: 15px;
+                padding: 28px 20px;
             }
 
             .top-bar {
                 flex-direction: column;
                 align-items: center;
-                margin-bottom: 35px;
             }
 
-            .top-nav {
-                justify-content: center;
+            h1 {
+                font-size: 32px;
             }
         }
     </style>
 </head>
 <body>
     <div class="card">
-
         <div class="top-bar">
             <div class="logo">
-                <img src="{{ asset('images/sqimg_1776694944841.png') }}" alt="Logo">
+                <img src="{{ asset('images/yannis.png') }}" alt="Logo">
             </div>
 
             <div class="top-nav">
                 @auth
                     <a href="{{ route('dashboard') }}">Dashboard</a>
-
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="logout-btn">Log out</button>
@@ -177,16 +150,16 @@
             </div>
         </div>
 
-        <h1>Think clearly.<br><em>Work deeply.</em></h1>
+        <h1>Yannis Movie System</h1>
 
         <p>
-            A calm space to focus, track your energy, and do your best thinking — without the noise.
+            A simple movie platform where users can browse films, manage their accounts,
+            and organize their own movie space.
         </p>
 
         <div class="hero-image">
-            <img src="{{ asset('images/welcome.png') }}" alt="Welcome Image">
+            <img src="{{ asset('images/yannis2.jpeg') }}" alt="Movie Welcome Image">
         </div>
-
     </div>
 </body>
 </html>

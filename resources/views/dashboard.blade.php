@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Dashboard</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
+    <title>Yannis Movie Dashboard</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/yannis.png') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,50 +13,33 @@
             box-sizing: border-box;
         }
 
-                /* LOGO CENTER */
-        .logo-center {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .logo-center img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            opacity: 0.9;
-        }
-
         body {
-            font-family: "DM Sans", sans-serif;
-            background: #2a2e27;
-            color: #d4d8cc;
+            font-family: "Inter", sans-serif;
+            background: #f5f6f8;
+            color: #1f2937;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
+            padding: 30px;
         }
 
-        /* ✅ WIDER DASHBOARD */
         .card {
             width: 100%;
-            max-width: 1300px;
-            background: #323630;
-            border-radius: 28px;
-            padding: 70px 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 45px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
 
-        /* TOP BAR */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 60px;
+            gap: 20px;
             flex-wrap: wrap;
+            margin-bottom: 45px;
         }
 
-        /* PROFILE LEFT */
         .profile-left {
             display: flex;
             align-items: center;
@@ -74,204 +55,178 @@
 
         .profile-info .name {
             font-size: 16px;
-            color: #dce4d4;
+            font-weight: 600;
+            color: #111827;
         }
 
         .profile-info .status {
             font-size: 13px;
-            color: #7d8878;
+            color: #6b7280;
         }
 
-        /* ACTIONS RIGHT */
         .top-actions {
             display: flex;
-            gap: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .top-actions a,
         .logout-btn {
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 999px;
+            padding: 10px 18px;
+            border-radius: 10px;
             font-size: 14px;
             border: none;
             cursor: pointer;
-            transition: 0.2s ease;
+            font-family: "Inter", sans-serif;
         }
 
         .top-actions a {
-            background: rgba(255,255,255,0.05);
-            color: #9eaa96;
+            background: #eef2f7;
+            color: #1f2937;
         }
 
         .top-actions a:hover {
-            background: rgba(255,255,255,0.1);
-            color: #c8d4c0;
+            background: #e2e8f0;
         }
 
         .logout-btn {
-            background: #6a4b4b;
-            color: #f0d8d8;
+            background: #dc2626;
+            color: white;
         }
 
         .logout-btn:hover {
-            background: #7a5858;
+            background: #b91c1c;
         }
 
-        /* MAIN TEXT */
+        .logo-center {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .logo-center img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+        }
+
         h1 {
-            font-family: "Lora", serif;
-            font-size: 56px;
+            font-size: 42px;
+            font-weight: 700;
             text-align: center;
-            margin-bottom: 20px;
-            color: #dce4d4;
-        }
-
-        h1 em {
-            color: #8faa88;
-            font-style: italic;
+            margin-bottom: 14px;
+            color: #111827;
         }
 
         .main-text {
+            max-width: 700px;
+            margin: 0 auto 40px;
             text-align: center;
-            max-width: 720px;
-            margin: 0 auto 60px;
-            color: #7d8878;
-            line-height: 1.8;
-        }
-
-        /* CARDS */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .info-card {
-            background: rgba(255,255,255,0.04);
-            padding: 28px;
-            border-radius: 20px;
-        }
-
-        .info-card small {
-            color: #6b7d66;
-            font-size: 12px;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .info-card h3 {
-            font-family: "Lora", serif;
-            font-size: 26px;
-            margin-bottom: 10px;
-            color: #dce4d4;
-        }
-
-        .info-card p {
-            color: #7d8878;
+            color: #4b5563;
             line-height: 1.7;
         }
 
-        /* MOBILE */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .info-card {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .info-card small {
+            display: block;
+            margin-bottom: 8px;
+            color: #6b7280;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .info-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #111827;
+        }
+
+        .info-card p {
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
         @media (max-width: 768px) {
             .card {
-                padding: 40px 25px;
+                padding: 28px 20px;
             }
 
-            h1 {
-                font-size: 36px;
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .info-grid {
                 grid-template-columns: 1fr;
             }
 
-            .top-bar {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .top-actions {
-                justify-content: center;
+            h1 {
+                font-size: 32px;
             }
         }
     </style>
 </head>
 <body>
-
 @php
-    // ✅ FIXED avatar list (matches your actual files)
     $avatars = ['avatar.png', 'avatar1.png', 'avatar2.png'];
-
     $avatar = $avatars[auth()->user()->id % count($avatars)];
 @endphp
 
 <div class="card">
-
-    <!-- TOP BAR -->
     <div class="top-bar">
-
-        <!-- LEFT: PROFILE -->
         <div class="profile-left">
             <img src="{{ asset('images/avatars/' . $avatar) }}" alt="Avatar">
-
             <div class="profile-info">
                 <div class="name">{{ auth()->user()->name }}</div>
                 <div class="status">Logged in</div>
             </div>
         </div>
 
-        <!-- RIGHT: ACTIONS -->
         <div class="top-actions">
             <a href="{{ route('profile.edit') }}">Edit Profile</a>
-
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button class="logout-btn">Log out</button>
             </form>
         </div>
-
     </div>
 
-    <!-- MAIN TEXT -->
-    <!-- LOGO -->
     <div class="logo-center">
-        <img src="{{ asset('images/sqimg_1776694944841.png') }}" alt="Logo">
+        <img src="{{ asset('images/yannis.png') }}" alt="Logo">
     </div>
 
-        <h1>
-        Welcome back.<br>
-        <em>Work deeply.</em>
-    </h1>
+    <h1>Welcome to your movie dashboard</h1>
 
     <p class="main-text">
-        This is your personal dashboard where you can manage your space,
-        stay organized, and continue your work in a calm and focused environment.
+        Manage your account, personalize your profile, and continue building your movie system in a simple layout.
     </p>
 
-    <!-- CARDS -->
     <div class="info-grid">
-
         <div class="info-card">
-            <small>Profile</small>
-            <h3>Your Space</h3>
-            <p>
-                Personalize your account and keep your workspace calm, simple, and organized.
-            </p>
+            <small>Movies</small>
+            <h3>Movie Library</h3>
+            <p>Organize titles and manage movie-related content in one clean dashboard area.</p>
         </div>
 
         <div class="info-card">
-            <small>Avatar</small>
-            <h3>Dynamic Identity</h3>
-            <p>
-                Each user automatically receives a unique avatar based on available images.
-            </p>
+            <small>Users</small>
+            <h3>User Avatar</h3>
+            <p>Each user is automatically assigned a different avatar based on the available images.</p>
         </div>
-
     </div>
-
 </div>
-
 </body>
 </html>
